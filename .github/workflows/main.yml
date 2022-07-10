@@ -15,8 +15,6 @@ jobs:
   build:
     name: "Build ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
-    with:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
@@ -27,6 +25,7 @@ jobs:
         uses: actions/setup-node@v1.2.0
         with:
           node-version: "12"
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
       - name: Fetch Electron Versions
         id: electron
