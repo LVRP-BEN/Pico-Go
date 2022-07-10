@@ -22,16 +22,14 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Setup node
-        uses: actions/setup-node@v1.2.0
+        uses: actions/setup-node@v3
         with:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           node-version: "12"
 
       - name: Fetch Electron Versions
         id: electron
         uses: ./.github/actions/fetch-electron-versions
         with:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           max-count: 3
           git-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -70,7 +68,6 @@ jobs:
         if: github.event_name == 'schedule'
         uses: actions/upload-artifact@master
         with:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           name: pymakr-nightly.vsix
           path: ./pymakr-${{ github.sha }}.vsix
   deploy:
